@@ -1,0 +1,22 @@
+@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+<div class="logout-box">
+    <div class="text-center mt-5">
+        <img src="~/images/CodeCraft_logo_Option1.png" alt="Logo" width="350" height="50" class="mb-4 mt-5" />
+        <h1>@ViewData["Title"]</h1>
+        <h1 class="mb-3">You have successfully logged out!</h1>
+    </div>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-9">
+                <br>
+                <p class="text-center">
+                    <a asp-area="Identity" asp-page="/Account/Login"><strong>Would you like to log back in? Login here.</strong></a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

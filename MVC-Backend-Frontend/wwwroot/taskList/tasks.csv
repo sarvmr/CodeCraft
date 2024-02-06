@@ -1,0 +1,12 @@
+taskID,taskDifficulty,taskDescription
+1,easy,print the string of text 'hello world'
+2,easy,print the number '123456789'
+3,easy,print the sum of 111 and 222
+4,easy,print the difference between 1000 and 123
+5,easy,print the product of 6 and 7
+21,medium,using a loop print the text 'ho ' 3 times
+22,medium,using a loop print the text 'HA ' 5 times
+23,medium,using a loop print a right angle triange made of asterisks (*) in three rows with each subsequent row containing one more * than the previous
+24,medium,using a loop print a square shape made of 5 the dollar signs ($) in each dimension
+25,medium,using a loop print a rectangle shape made of 8 equal signs (=) in each column of 4 rows
+100,hard,given the string '!yenruoj gnidoc ruoy fo trap sa tfarCedoC gnisu rof uoy knahT\n.noitseuq lanif eht detelpmoc evah uoY !snoitalutargnoC' please print its reverse

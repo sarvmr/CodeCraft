@@ -1,0 +1,40 @@
+
+@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+<head>
+    @* <link rel="stylesheet" type="text/css" href="~/css/Login.cshtml.css"> *@
+    @* <link rel="stylesheet" href="~/MVC-Backend-Frontend.styles.css" asp-append-version="true" /> *@
+
+    @* CSS Stylesheet for _Layout.cshtml Page - Currently not being used as difficulties of getting styling from it.  *@
+    @* <link rel="stylesheet" href="~/Views/Home/Login.cshtml.css" asp-append-version="true"> *@
+</head>
+<div class="container login-box"> 
+<div class="text-center mt-5">
+    <img src="~/images/CodeCraft_logo_Option1.png" alt="Logo" width="350" height="50" class="mb-4 mt-5" />
+    <h1>@ViewData["Title"]</h1>
+    <h1 class="mb-3">Login</h1>
+</div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form class>
+                <div class="form-group">
+                    <label for="username" class="mb-2">Enter your Username / Email</label>
+                    <input type="text" class="form-control mb-3" id="username" placeholder="Username or E-mail">
+                </div>
+                <div class="form-group">
+                    <label for="password" class="mb-2">Enter your Password</label>
+                    <input type="password" class="form-control mb-3" id="password" placeholder="Password">
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+                 <a href="/Home/Register" class="btn btn-secondary">Register</a>
+            </form>
+
+              <p class="text-center mt-3">
+                <a asp-area="" asp-controller="Home" asp-action="Register">Don't have an account? Register here.</a>
+            </p>
+        </div>
+    </div>
+</div>

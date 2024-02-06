@@ -1,0 +1,274 @@
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<CustomUser> UserManager
+
+<div class="modal-overlay" onclick="closeModal()"></div>
+<div id="username" style="display: none;">@User.Identity?.Name</div>
+<div id="tasksModal" class="modal" onclick="event.stopPropagation()">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="consistent-header">
+                <h5 class="consistent-header">Tasks</h5>
+            </div>
+            <div class="modal-body-container">
+                <!-- Left Column - modal-body -->
+                <div class="modal-body">
+                    <p id="challenge-selected-text">Challenge Question Selected!</p>
+                    <div class="task-label">Easy</div>
+                    <div class="easy-tasks task-group"></div>
+                    <div class="task-line"></div>
+                    <div class="task-label">Medium</div>
+                    <div class="medium-tasks task-group"></div>
+                    <div class="task-line"></div>
+                    <div class="task-label">Hard</div>
+                    <div class="difficult-tasks task-group"></div>
+                </div>
+                <!-- Right Column - Confirm Button -->
+                <div class="confirm-button-container"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    const aiApiEndPoint = "https://codecraftapi.azurewebsites.net";
+    let selectedTask = null;
+    const easyTasksContainer = document.querySelector('.easy-tasks');
+    const mediumTasksContainer = document.querySelector('.medium-tasks');
+    const difficultTasksContainer = document.querySelector('.difficult-tasks');
+    const confirmButtonContainer = document.querySelector('.confirm-button-container');
+    let taskNumber = 1;
+    const question = "";
+    const tasks = {};
+
+    tasks[1] = { TaskID: 1, TaskDifficulty: "easy", TaskDescription: "Print the string of text 'hello world'", Answer: "hello world"};
+    tasks[2] = { TaskID: 2, TaskDifficulty: "easy", TaskDescription: "Print the number '123456789'", Answer: "123456789" };
+    tasks[3] = { TaskID: 3, TaskDifficulty: "easy", TaskDescription: "Print the sum of 111 and 222", Answer: "333"  };
+    tasks[4] = { TaskID: 4, TaskDifficulty: "easy", TaskDescription: "Print the difference between 1000 and 123", Answer: "877"};
+    tasks[5] = { TaskID: 5, TaskDifficulty: "easy", TaskDescription: "Print the product of 6 and 7", Answer: "42"  };
+    tasks[21] = { TaskID: 21, TaskDifficulty: "medium", TaskDescription: "Using a loop print the text 'ho ' 3 times", Answer: "hohoho"  };
+    tasks[22] = { TaskID: 22, TaskDifficulty: "medium", TaskDescription: "Using a loop print the text 'HA ' 5 times", Answer: "hahahahaha"  };
+    tasks[23] = { TaskID: 23, TaskDifficulty: "medium", TaskDescription: "Using a loop print a right angle triangle made of asterisks (*) in three rows with each subsequent row containing one more * than the previous", Answer: "*\n**\n***"  };
+    tasks[24] = { TaskID: 24, TaskDifficulty: "medium", TaskDescription: "Using a loop print a square shape made of 5 dollar signs ($) in each dimension", Answer: "$$$$$\n$$$$$\n$$$$$\n$$$$$\n$$$$$\n"  };
+    tasks[25] = { TaskID: 25, TaskDifficulty: "medium", TaskDescription: "Using a loop print a rectangle shape made of 8 equal signs (=) in each column of 4 rows", Answer: "========\n========\n========\n========\n"  };
+    tasks[100] = { TaskID: 100, TaskDifficulty: "hard", TaskDescription: "Please reverse the string '!yenruoj gnidoc ruoy fo trap sa tfarCedoC gnisu rof uoy knahT\n.noitseuq lanif eht detelpmoc evah uoY !snoitalutargnoC' and print it", Answer: "Congratulations! You have completed the final question. Thank you for using CodeCraft as part of your coding journey!"  };
+
+
+    function updateDescriptionInParent(selectedTask, isChallenge)
+    {
+        if (isChallenge) {
+            getChallenge()
+                .then(challenge => {
+                    $('.description-of-selected-task').text("Challenge: " + challenge);
+                    $('.description-of-selected-task').css('color', 'red');
+                    question = challenge
+                })
+                .catch(error => {
+                    console.error('Error during getChallenge:', error);
+                });
+        } else {
+            let taskDescription = tasks[selectedTask]?.TaskDescription || "Currently no task selected";
+            $('.description-of-selected-task').text(taskDescription);
+            $('.description-of-selected-task').css('color', 'black');
+        }
+    }
+
+    async function getUserId() {
+        try {
+            let email = document.getElementById("username").innerText;
+
+            const response = await fetch(aiApiEndPoint + `/api/getUserId?email=${encodeURIComponent(email)}`);
+
+            if (response.ok) {
+                const data = await response.json();
+                return data;
+            } else {
+                console.error('Error:', response.status);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+    async function updateChallengeAttempted(challengeId) {
+        try {
+            const response = await fetch(aiApiEndPoint + `/api/updateChallengeAttempted?challengeId=${challengeId}`);
+
+            if (response.ok) {
+                const data = await response.json();
+            } else {
+                console.error('Error:', response.status);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+    function isChallengeTask(event) {
+        let clickedElement = event.target;
+        let parentContainer = clickedElement.parentElement;
+        let childElements = parentContainer.children;
+        let isLastChild = clickedElement === childElements[childElements.length - 1];
+        if (isLastChild) {
+            return true;
+        }
+    }
+
+    async function getChallenge() {
+        try {
+            @* const userId = await getUserId(); *@
+            const response = await fetch(aiApiEndPoint + "/api/challengeapi?id=6566a9e4ef1bbfae2d29126f");
+            if (!response.ok) {
+                throw new Error(`Network response was not ok, status code: ${response.status}`);
+            }
+
+            const data = await response.json();
+            @* const updateAttemptedResult = await updateChallengeAttempted(data.id); *@
+            return data["question"];
+        } catch (error) {
+            console.error('Error during fetch:', error);
+            throw error; // Re-throw the error so that it can be caught by the caller
+        }
+    }
+
+    function runCode() {
+        const question = $('description-of-selected-task').text()
+        
+    }
+
+    function openTasksModal()
+    {
+        document.querySelector('.modal-overlay').style.display = 'block';
+        document.getElementById('tasksModal').style.display = 'block';
+    }
+
+    function closeModal()
+    {
+        document.querySelector('.modal-overlay').style.display = 'none';
+        document.getElementById('tasksModal').style.display = 'none';
+    }
+
+    for (let row = 1; row <= 10; row++)
+    {
+        for (let col = 1; col <= 10; col++)
+        {
+            const taskSquare = document.createElement('div');
+            taskSquare.classList.add('task-square');
+            taskSquare.dataset.task = taskNumber;
+            taskSquare.textContent = taskNumber;
+
+            taskSquare.addEventListener('click', (event) =>
+            {
+                const allTaskSquares = document.querySelectorAll('.task-square');
+                allTaskSquares.forEach(otherSquare =>
+                {
+                    otherSquare.classList.remove('task-active');
+                });
+                let isChallenge = isChallengeTask(event);
+                let challengeSelectedText = document.getElementById("challenge-selected-text");
+                if (isChallenge) {
+                    challengeSelectedText.style.display = "block";
+                } else {
+                    challengeSelectedText.style.display = "none";
+                }
+                taskSquare.classList.add('task-active');
+                selectedTask = taskSquare.textContent; //  ================================ set selectedTask to the value of the active task
+
+                // Remove existing confirm button
+                confirmButtonContainer.innerHTML = '';
+
+                // Create and append confirm button
+                const confirmButton = document.createElement('button');
+                confirmButton.classList.add('confirm-task-button');
+                confirmButton.textContent = 'Confirm';
+                confirmButtonContainer.appendChild(confirmButton);
+
+                // Add event listener to the confirm button
+                confirmButton.addEventListener('click', () =>
+                {
+                    updateDescriptionInParent(selectedTask, isChallenge);
+                    closeModal();
+                });
+            });
+
+            if (taskNumber <= 20)
+            {
+                easyTasksContainer.appendChild(taskSquare);
+            } else if (taskNumber <= 80)
+            {
+                mediumTasksContainer.appendChild(taskSquare);
+            } else
+            {
+                difficultTasksContainer.appendChild(taskSquare);
+            }
+            if (taskNumber == 20 || taskNumber == 80 || taskNumber == 100) {
+                setChallengeTask(taskSquare);
+            }
+            taskNumber++;
+        }
+    }
+
+    function setChallengeTask(taskSquare) {
+        taskSquare.style.backgroundColor = "red";
+        taskSquare.style.color = "white";
+    }
+</script>
+
+
+
+<style>
+    .task-square:hover {
+        background-color: rgb(206, 204, 204);
+    }
+
+    .task-active {
+        background-color: rgb(137, 136, 136) !important;
+    }
+
+    .task-square {
+        width: 30px;
+        height: 30px;
+        background-color: rgb(234, 231, 231);
+        text-align: center;
+        line-height: 30px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        border: 1px solid #000;
+    }
+
+    .task-label {
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .task-line {
+        background-color: white;
+        height: 2px;
+        margin: 5px 0;
+    }
+
+    .confirm-task-button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-top: 37px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    .confirm-task-button:hover {
+        background-color: #45a049;
+    }
+
+    #challenge-selected-text {
+        color: red;
+        display: none;
+        text-align: center;
+    }
+</style>

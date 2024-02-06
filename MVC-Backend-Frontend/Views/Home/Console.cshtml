@@ -1,0 +1,40 @@
+@* <!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="Console.cshtml.css">
+</head>
+
+<body>
+    <div class="consistent-header-parent">
+        <h5 class="consistent-header">
+            Console Output
+        </h5>
+        <div class="console-content">
+            <textarea id="console-textarea" rows="18" oninput="updateConsoleOutput(this.value)"></textarea>
+            <div class="console-error-line"></div>
+        </div>
+    </div>
+    <script>
+        let textareaValue = "";
+        let timeout;
+
+        function updateConsoleOutput(consoleOutputValue)
+        {
+            clearTimeout(timeout);
+
+            timeout = setTimeout(function ()
+            {
+                textareaValue = consoleOutputValue;
+                
+
+                if (typeof window.parentCallback === 'function')
+                {
+                    window.parentCallback(value);
+                }
+            }, 2000);
+        }
+    </script>
+</body>
+
+</html> *@

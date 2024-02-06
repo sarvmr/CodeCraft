@@ -1,0 +1,46 @@
+﻿<br>
+
+<h1>@ViewData["Title"]</h1>
+
+
+<div classname="HelpPage_Description">
+  <div class="flex2">
+      <span class="logo"> </span> 
+    <p> CodeCraft is a brand new game that helps users to learn about programming in a fun and exciting way! </p>
+  </div>
+
+    
+
+
+    <div class="flex">
+      <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Interactions"><button>Start Coding!</button></a>
+      <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Tutorial"><button>First Time? Go to Tutorial</button></a>
+    </div>
+
+
+
+
+    @* <div class="flex2">
+        <h3> Navigating The Website:</h3><br>
+        <p> In the top Navigation Bar, this contains links to the Home Page, Help Page (current page), & Privacy Page</p>
+    </div>   *@
+
+        @* <h3> Example Images</h3>
+    <p></p>
+
+@using (Html.BeginForm("UploadText", "File", FormMethod.Post, new { enctype = "multipart/form-data", id = "uploadTextForm" }))
+{
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="content">Message:</label>
+        <input type="text" name="content" id="content" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Upload Text</button>
+
+}
+
+
+</div> *@

@@ -1,0 +1,40 @@
+@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+@* Ready for deletion *@
+
+<div class="registration-box">
+    <div class="text-center mt-5">
+        <img src="~/images/CodeCraft_logo_Option1.png" alt="Logo" width="350" height="50" class="mb-4 mt-5" />
+        <h1>@ViewData["Title"]</h1>
+        <h1 class="mb-3">Create an Account</h1>
+    </div>
+
+    @* <div class="container"> *@
+        <div class="row justify-content-center">
+            <div class="col-md-9">
+                <form class>
+                    <div class="form-group">
+                        <label for="username" class="mb-2">Enter your Username / Email</label>
+                        <input type="text" class="form-control mb-3" id="username" placeholder="Username or E-mail">
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="mb-2">Enter your Password</label>
+                        <input type="password" class="form-control mb-3" id="password" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword" class="mb-2">Confirm your Password</label>
+                        <input type="password" class="form-control mb-3" id="confirmPassword"
+                            placeholder="Confirm Password">
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-3">Register</button>
+                </form>
+
+                <p class="text-center">
+                    <a asp-area="" asp-controller="Home" asp-action="Login">Already have an account? Login here.</a>
+                </p>
+            </div>
+        </div>
+    @* </div> *@
+</div>

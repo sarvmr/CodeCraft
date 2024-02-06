@@ -1,0 +1,372 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.code-block {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-evenly;
+  height: 5vw;
+  min-width: 5vw;
+  text-align: center;
+  border-top: 0.5vw solid transparent;
+  border-bottom: 0.5vw solid transparent;
+  margin-top: 1vh;
+  /* margin-left: 70px; 
+  transform: scale(0.9);*/
+}
+
+p
+{
+  margin: 1vh;
+  white-space: nowrap;
+}
+
+.code-block-slot {
+  height: 5vw;
+  min-width: 10vw;
+  border: black 0.4vh solid;
+  margin-top: 1vh;
+  /* margin-left: 70px; 
+  transform: scale(0.9);*/
+}
+
+/* This is for the slots of variables/literals */
+.varlit {
+  min-height:2.5vw;
+  min-width: 2.5vw;
+  background: linear-gradient(to bottom right,#ffffff 0%,#ffffff 50%,red 50%,red 100%);
+  border: black 2px solid;
+  margin: 1vh;
+}
+
+/* This is for the slots of variables */
+.var {
+  min-height:2.5vw;
+  min-width: 2.5vw;
+  background-color: red;
+  border: black 2px solid;
+  margin: 1vh;
+}
+
+/* This is for literals in the sidebar */
+.dummy.lit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5vw;
+  aspect-ratio: 1;
+  background-color: white;
+  border: black 2px solid;
+  margin: 0.5vw;
+}
+
+.equality-block {
+  background-color: orchid;
+  border-right: 0.5vw solid yellow;
+}
+
+.expression-block {
+  background-color: orange;
+}
+
+.assignment-block {
+  border-right: 0.5vw solid orange;
+  background-color: rgb(110, 75, 239);
+}
+
+.function-block {
+  background-color: lightgreen;
+}
+
+.scope-block {
+  background-color: cyan;
+  border-right: 0.5vw solid orchid;
+  border-bottom: 0.5vw solid white;
+}
+
+.logic-block {
+  background-color: yellow;
+  border-right: 0.5vw solid orchid;
+}
+
+.expression {
+  height: fit-content;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.line {
+  width: min-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scope-divider {
+  width: 5vw;
+  background-color: cyan;
+  border-right: 0.5vw solid white;
+  
+  /*transform: scale(0.9);*/
+}
+
+.scope-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: min-content;
+}
+
+.else {
+  background-color: cyan;
+  border-bottom: 0.5vw solid white;
+  border-right: 0.5vw solid black;
+}
+
+.dialogButtonContainer
+{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.testContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+  border: 1px solid black;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+input[type="text"], input[type="number"], select {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  border-width: 5px;
+  margin: 1vh;
+}
+
+.literal-block input[type="number"] {
+  width: 3ch;
+}
+
+.consistent-header-parent {
+  border-radius: 5px;
+  margin: 10px;
+  width: 66vw;
+  margin-left: 0px;
+  position: sticky;
+  top: 0;
+}
+
+.consistent-header {
+  background-color: #333;
+  color: #fff;
+  padding: 5px;
+  text-align: center;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+}
+
+.variable-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  background-color: red;
+  border: black 2px solid;
+  margin: 1vh;
+  padding: 1vh;
+}
+
+.variable-name 
+{
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: underline;
+  margin: 0;
+}
+
+/* Checkbox CSS */
+
+input[type="checkbox"]{
+  -webkit-appearance: initial;
+  appearance: initial;
+  min-width: 5ch;
+  min-height: 4ch;
+  border: none;
+  background: white;
+  position: relative;
+  color: black;
+  cursor: pointer;
+  border: black 2px solid;
+  border-radius: 5px;
+
+  font-weight: bold;
+  margin: 1vh;
+}
+
+input[type="checkbox"]:checked:after {
+  /* Heres your symbol replacement - this is a tick in Unicode. */
+  content: "True";
+  /* The following positions my tick in the center, 
+   * but you could just overlay the entire box
+   * with a full after element with a background if you want to */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  -moz-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+
+}
+
+
+
+input[type="checkbox"]:not(:checked):after {
+  /* Heres your symbol replacement - this is a tick in Unicode. */
+  content: "False";
+  /* The following positions my tick in the center, 
+   * but you could just overlay the entire box
+   * with a full after element with a background if you want to */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  -moz-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+}
+
+
+/* Login Page CSS */
+
+.login-box,.logout-box{
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: #FFC300;
+  padding: 20px;
+
+  max-width: 500px; 
+  margin: auto;
+}
+
+/* Registration Page CSS */
+
+.registration-box {
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: #FFC300;
+  padding: 20px;
+
+  padding-left: 60px; /* Add horizontal padding to the left side */
+  padding-right: 60px; /* Add horizontal padding to the right side */
+
+  max-width: 700px; 
+  margin: auto;
+}
+
+/* mobile screens */
+@media (max-width: 768px) {
+  .container.login-box, .container.registration-box, .logout-box {
+      width: 100%;
+  }
+
+  .text-center img {
+      width: 80%;
+      height: auto;
+  }
+
+  .form-group {
+      margin: 10px 0;
+  }
+
+  .btn {
+      display: block;
+      width: 50%;
+      margin-bottom: 10px;
+  }
+}
+
+.sticky-footer {
+  margin-top: 0px;
+}
+
+.container.body-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* This will take the full viewport height */
+}
+
+.navbar-nav {
+  display: flex;
+  justify-content: flex-start;
+  /* justify-content: space-between; */
+  width: 100%;
+}
+
+.nav-item.ml-auto {
+  margin-left: auto;
+}
+
+.nav-item.logout {
+  absolute: right;
+  margin-left: 10px; /* Decreased from 20px to 10px */
+  margin-right: 0px;
+  margin-top: 10px;
+}
+
+
+/* Username and Logout Button CSS */
+.nav-item.login-partial{
+  absolute: right;  
+  display: flex;
+  justify-content: flex-end;
+}
+
+.nav-item.dropdown,
+.nav-item.code,
+.nav-item.tutorial {
+    margin-right: 5px; /* Adjust this value as needed */
+}
+

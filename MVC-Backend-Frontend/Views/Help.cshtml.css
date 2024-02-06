@@ -1,0 +1,31 @@
+.HelpPage_Description{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+/* CodeBlocks Project logo */
+
+.logo {
+    display: inline-block;
+    width: 300px;
+    height: 50px;
+    margin-right: 10px;
+   
+  /* Project Logo - Version 1 */
+    background-image: url('/images/CodeBlocks_logo_Option1.png');
+  
+  /* Project Logo - Version 2 */
+    /* background-image: url('/images/CodeBlocks_logo_Option2.png'); */
+  
+  /* Project Logo - Version 3 */
+    /* background-image: url('/images/CodeBlocks_logo_Option3.png'); */
+  
+  /* Project Logo - Version 4 */
+    /* background-image: url('/images/CodeBlocks_logo_Option4.png'); */
+  
+  
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }

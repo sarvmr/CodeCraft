@@ -1,0 +1,159 @@
+{
+    "blocks": [
+
+        // variable block
+        // x
+        {
+            "type": "variable",
+            "name": "x"
+        },
+
+        // value block (numbers text math + = * /)
+        // 100
+        {
+            "type": "value",
+            "field": "num",
+            "num": 100
+        },
+        // "abc"
+        {
+            "type": "value",
+            "field": "text",
+            "text": "abc"
+        },
+        // with operations
+        // 1 + 1
+        {
+            "type": "value",
+            "field": "num",
+            "num": 1,
+            "input": {
+                "type": "value",
+                "field": "operation",
+                "operation": "add_chain",
+                "A": {
+                    "type": "value",
+                    "field": "num",
+                    "num": 1
+                }
+            }
+        },
+
+        // function block (print = += -= *=)
+        // print("abc")
+        {
+            "type": "function",
+            "instruction": "print",
+            "input": {
+                "type": "value",
+                "field": "text",
+                "text": "abc"
+            }
+        },
+        // x = "abc"
+        {
+            "type": "function",
+            "field": "operation",
+            "operation": "assign_variable",
+            "A": {
+                "type": "variable",
+                "name": "x"
+            },
+            "B": {
+                "type": "value",
+                "field": "text",
+                "text": "abc"
+            }
+        },
+
+        // logic block (== <= >= !=)
+        // x == 10
+        {
+            "type": "logic",
+            "logic": "equals",
+            "A": {
+                "type": "variable",
+                "name": "x"
+            },
+            "B": {
+                "type": "value",
+                "field": "num",
+                "num": 10
+            }
+        },
+
+        // control blocks (if else while)
+        // if x == 1:
+        //     print(1)
+        //     print("abc")
+        // else :
+        //     x = 1
+        //     print("xyz")
+        {
+            "type": "control",
+            "instruction": "if",
+            "input": {
+                "type": "logic",
+                "logic": "equals",
+                "A": {
+                    "type": "variable",
+                    "name": "x"
+                },
+                "B": {
+                    "type": "value",
+                    "field": "num",
+                    "num": "10"
+                }
+            },
+            "children": [
+                {
+                    "type": "function",
+                    "instruction": "print",
+                    "input": {
+                        "type": "value",
+                        "field": "num",
+                        "num": 1
+                    }
+                },
+                {
+                    "type": "function",
+                    "instruction": "print",
+                    "input": {
+                        "type": "value",
+                        "field": "text",
+                        "text": "abc"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "control",
+            "instruction": "else",
+            "children": [
+                {
+                    "type": "function",
+                    "field": "operation",
+                    "operation": "assign_variable",
+                    "A": {
+                        "type": "variable",
+                        "name": "x"
+                    },
+                    "B": {
+                        "type": "value",
+                        "field": "num",
+                        "num": 1
+                    }
+                },
+                {
+                    "type": "function",
+                    "instruction": "print",
+                    "input": {
+                        "type": "value",
+                        "field": "text",
+                        "text": "xyz"
+                    }
+                }
+            ]
+        }
+    ]
+}

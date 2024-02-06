@@ -1,0 +1,145 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+.navbar-nav .nav-item{
+  padding-top: 5px;
+
+}
+.navbar-nav .nav-item:hover{
+  background-color: #FED242;
+  border-radius: 10px;
+}
+
+.navbar-brand .logo {
+  display: inline-block;
+  width: 300px;
+  height: 50px;
+  margin-right: 10px;
+  background-image: url('/images/CodeCraft_logo_Option1.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+a {
+  color: #0077cc;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px;
+}
+
+/* Change navbar background color */
+
+/* Important Note: Remove bg-white in 
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+ so that the top nav bar will display background color */
+
+.navbar {
+  /* Navbar background color: lightcyan */
+  /* background-color: #afeeee; */
+
+  background-color: #FFC300;
+}
+
+/* Run Button Section */
+
+.run {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 5px;
+  padding-top: 2.5px;
+  padding-right: 5px;
+  padding-left: 2.5px;
+ 
+}
+
+.navbar-nav .run:hover{
+  background-color: #228B22;
+  text-color: #ffffff;
+  border-radius: 10px;
+}
+
+.run button {
+  background-image: url('/images/Play-Button-Triangle.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border: none;
+  width: 30px;
+  height: 30px;
+}
+
+.run button:active {
+  background-image: url('/images/Play-Button-Triangle-Active.png');
+}
+
+.pause {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2.5px;
+  margin-left: 10px;
+  margin-right: 8px;
+}
+
+.navbar-nav .pause:hover{
+  background-color: #EE4B2B;
+  text-color: #ffffff;
+  border-radius: 10px;
+}
+
+
+.pause button {
+  background-image: url('/images/Pause-Button-Red-Icon.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border: none;
+  width: 30px;
+  height: 30px;
+}
+
+.pause button:active {
+  background-image: url('/images/Pause-Button-Red-Icon-Active.png');
+  
+}
+
+.logout {
+  position: absolute;
+  right: 0;
+  margin-right: 30px;
+}
